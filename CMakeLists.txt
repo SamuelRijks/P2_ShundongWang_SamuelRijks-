@@ -3,10 +3,20 @@ project(P2_ShundongWang_SamuelRijks)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(P2_ShundongWang_SamuelRijks main.cpp
-        main.cpp
-        Headers/include/Contenidor.cpp
-        Headers/include/Contenidor.h
-        Headers/include/Contenidor.h
-        Headers/include/Element.cpp
-        Headers/include/Element.h)
+# Define the source files
+set(Headers Contenidor.h Comodi.h Element.h Lletra.h Seleccio.h)
+
+# Define the include directories where the header files are located
+include_directories(Sources)
+
+# Create the executable
+add_executable(P2_ShundongWang_SamuelRijks
+        Sources/main.cpp
+        Sources/src/Comodi.cpp
+        Sources/src/Contenidor.cpp
+        Sources/src/Seleccio.cpp
+        Sources/src/Lletra.cpp
+)
+
+# Link the executable with the necessary header files
+target_link_libraries(P2_ShundongWang_SamuelRijks ${Headers})

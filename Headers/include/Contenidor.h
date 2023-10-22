@@ -9,10 +9,6 @@
 #include "Element.h"
 
 class Contenidor {
-public:
-    Contenidor();
-    ~Contenidor();
-
 private:
     struct node{
         Element *contigut;
@@ -20,6 +16,16 @@ private:
     };
 
     node *taula;
+
+public:
+    Contenidor(int nRow, int nCol);
+    ~Contenidor();
+
+    void afegirElement(Element*);
+    Element* EliminaPerColumna(int col);
+    Element* EliminaComodi();
+    int getQuants();
+    void mostrar();
 
 };
 
