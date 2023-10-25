@@ -5,7 +5,7 @@
 #ifndef P2_SHUNDONGWANG_SAMUELRIJKS_SELECCIO_H
 #define P2_SHUNDONGWANG_SAMUELRIJKS_SELECCIO_H
 
-
+#include <iostream>
 #include "Element.h"
 
 class Seleccio {

@@ -20,3 +20,38 @@ Contenidor::Contenidor(int nRow, int nCol) {
     std::mt19937 gen(rd());
 
 }
+Contenidor::~Contenidor() {
+    for (int i = 0; i < nRow; ++i) {
+        node *current = taula[i];
+        while (current != nullptr) {
+            node *temp = current;
+            current = current->seguent;
+            delete temp->contingut;
+            delete temp;
+        }
+    }
+    delete[] taula;
+}
+
+void Contenidor::afegirElement(Element *element) {
+    // 实现将元素添加到表格的逻辑
+}
+
+Element *Contenidor::EliminaPerColumna(int col) {
+    // 实现按列删除元素的逻辑
+    return nullptr; // 仅作示例
+}
+
+Element *Contenidor::EliminaComodi() {
+    // 实现删除通配符元素的逻辑
+    return nullptr; // 仅作示例
+}
+
+int Contenidor::getQuants() {
+    // 实现获取元素数量的逻辑
+    return 0; // 仅作示例
+}
+
+void Contenidor::mostrar() {
+    // 实现显示表格的逻辑
+}

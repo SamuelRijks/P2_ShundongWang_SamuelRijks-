@@ -1,7 +1,7 @@
 #include <iostream>
-
+#include "../Headers/include/Lletra.h"
 int main() {
-    cout<<"Hello World";
+    std::cout<<"Hello World";
 
     Lletra c; //invoca el constructor per defecte
     Lletra b(50,'B');

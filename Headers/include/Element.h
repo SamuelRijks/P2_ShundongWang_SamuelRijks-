@@ -4,15 +4,14 @@
 
 #ifndef P2_SHUNDONGWANG_SAMUELRIJKS_ELEMENT_H
 #define P2_SHUNDONGWANG_SAMUELRIJKS_ELEMENT_H
-
+#include <iostream>
 
 class Element {
 private:
     char simbol;
 
 public:
-    Element(char simbol){this->simbol = simbol;}
-
+    Element() ;
     virtual char getSimbol() =0;
     virtual int getPremi() =0;
     virtual bool operator==(Element *other) =0;

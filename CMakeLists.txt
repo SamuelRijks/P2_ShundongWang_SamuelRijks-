@@ -4,7 +4,7 @@ project(P2_ShundongWang_SamuelRijks)
 set(CMAKE_CXX_STANDARD 23)
 
 # Define the source files
-set(Headers Contenidor.h Comodi.h Element.h Lletra.h Seleccio.h)
+set(Headers Contenidor.h Comodi.h Element.h Lletra.h Seleccio.h Contenidor.h)
 
 # Define the include directories where the header files are located
 include_directories(Sources)
