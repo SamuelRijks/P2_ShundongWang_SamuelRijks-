@@ -14,8 +14,9 @@ private:
         Element *contigut;
         node *seguent;
     };
-
-    node *taula;
+    int nRow;
+    int nCol;
+    node **taula;
 
 public:
     Contenidor(int nRow, int nCol);
