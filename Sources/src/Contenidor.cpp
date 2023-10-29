@@ -26,25 +26,24 @@ Contenidor::Contenidor(int nRow, int nCol) {
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dist(0, 5);
 
+    int randomIndex;
     for (int i = 0; i < nRow; ++i) {
         taula[i] = new node[nCol];
         for (int j = 0; j < nCol; ++j) {
-            int randomIndex = dist(gen);
-            if(randomIndex<4&&randomIndex>=0){
+            randomIndex = dist(gen); // Declare it here
+            if (randomIndex < 4 && randomIndex >= 0) {
                 char A = availableChars[randomIndex];
                 int premiValue = randomIndex;
-                Element * element = new Lletra(premiValue,A);
+                Element* element = new Lletra(premiValue, A);
                 taula[i][j].contigut = element;
                 taula[i][j].seguent = nullptr;
-            }else{
+            } else {
                 char B = availableChars[randomIndex];
                 int premiValue2 = randomIndex;
-                Element* element = new Comodi(premiValue2,B);
+                Element* element = new Comodi(premiValue2, B);
                 taula[i][j].contigut = element;
                 taula[i][j].seguent = nullptr;
             }
-
-
         }
     }
 }
@@ -118,7 +117,7 @@ void Contenidor::mostrar() {
         for (int j = 0; j < nCol; ++j) {
             if (taula[i][j].contigut != nullptr) {
                 // 使用元素的显示方法
-                std::cout << taula[i][j].contigut->getPremi() << " ";
+                std::cout << taula[i][j].contigut->getSimbol() << " ";
             } else {
                 std::cout << " " << " ";
             }

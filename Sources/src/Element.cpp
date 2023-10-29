@@ -24,8 +24,12 @@ bool Element::operator!=(Element *other){
 }*/
 
 
-Element::Element() : simbol('_') {}
+Element::Element() : simbol('_') {
 
-Element::Element(char simbol) {}
+}
+
+Element::Element(char simbol) {
+    this->simbol=simbol;
+}
 
 

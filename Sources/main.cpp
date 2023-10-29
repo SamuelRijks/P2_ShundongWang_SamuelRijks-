@@ -37,5 +37,12 @@ int main() {
     }
 
     Contenidor* contenidor = new Contenidor(nFilas, nColumnas);
+    std::cout << "Seleccioneu 3 lletres iguals:" << std::endl;
+    std::cout << "_ _ _ _ _ _" << std::endl;
+    std::cout << "Lletres disponibles" << std::endl;
+    contenidor->mostrar();
+
+
+
 
 }
