@@ -5,7 +5,7 @@
 #include "../Sources/src/Element.cpp"
 #include "../Sources/src/Comodi.cpp"
 #include "../Sources/src/Seleccio.cpp"
-#include "../Sources/src/Element.cpp"
+
 int main() {
     std::cout<<"Hello World";
 
@@ -18,8 +18,8 @@ int main() {
     Element *e;
     e= new Lletra(50,'A');
 
-    // Element *seleccionades;
-    //  seleccionades = new Lletra[6];
+    //Element *seleccionades;
+    //seleccionades = new Lletra[6];
     // crea un array del tipus Element però inicialitzem amb el constructor per defecte de la filla Lletra
 
     Element *seleccionades[6]; // 创建指针数组

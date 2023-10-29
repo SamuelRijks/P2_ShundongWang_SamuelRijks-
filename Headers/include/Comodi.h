@@ -12,7 +12,7 @@ private:
     int premi;
 public:
     Comodi() : Element('*') {}
-    Comodi(int premi, char simbol): Element('*') {
+    Comodi(int premi, char simbol) : Element('*') {
         this->premi = premi;
     }
 
