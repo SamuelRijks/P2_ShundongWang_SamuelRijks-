@@ -17,7 +17,7 @@ public:
     virtual int getPremi() =0;
     virtual bool operator==(Element *other) =0;
     virtual bool operator!=(Element *other)=0;
-    virtual void mostrar();
+    //virtual void mostrar() = 0;
 
 
 };

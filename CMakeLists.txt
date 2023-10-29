@@ -16,7 +16,9 @@ add_executable(P2_ShundongWang_SamuelRijks
         Sources/src/Contenidor.cpp
         Sources/src/Seleccio.cpp
         Sources/src/Lletra.cpp
+        Sources/src/Element.cpp
 )
 
 # Link the executable with the necessary header files
 target_link_libraries(P2_ShundongWang_SamuelRijks ${Headers})
+
