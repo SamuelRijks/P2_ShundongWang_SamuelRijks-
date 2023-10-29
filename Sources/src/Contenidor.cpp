@@ -11,6 +11,7 @@
 
 
 using namespace  std;
+
 Contenidor::Contenidor(int nRow, int nCol) {
     this->nRow = nRow;
     this->nCol = nCol;
@@ -27,10 +28,20 @@ Contenidor::Contenidor(int nRow, int nCol) {
     std::uniform_int_distribution<> dist(0, 5);
 
     int randomIndex;
+    int contComodins = 0;
     for (int i = 0; i < nRow; ++i) {
         taula[i] = new node[nCol];
         for (int j = 0; j < nCol; ++j) {
-            randomIndex = dist(gen); // Declare it here
+            if (contComodins < 2) {
+                randomIndex = dist(gen); // Declare it here
+            } else {
+                // No generes más asteriscos, simplemente usa otro valor disponible
+                randomIndex = dist(gen);
+                while (availableChars[randomIndex] == '*') {
+                    randomIndex = dist(gen);
+                }
+            }
+
             if (randomIndex < 4 && randomIndex >= 0) {
                 char A = availableChars[randomIndex];
                 int premiValue = randomIndex;
@@ -43,10 +54,12 @@ Contenidor::Contenidor(int nRow, int nCol) {
                 Element* element = new Comodi(premiValue2, B);
                 taula[i][j].contigut = element;
                 taula[i][j].seguent = nullptr;
+                contComodins++;
             }
         }
     }
 }
+
 
 Contenidor::~Contenidor() {
     for (int i = 0; i < nRow; ++i) {
@@ -116,6 +129,8 @@ void Contenidor::mostrar() {
     for (int i = 0; i < nRow; ++i) {
         for (int j = 0; j < nCol; ++j) {
             if (taula[i][j].contigut != nullptr) {
+                Comodi *c = new Comodi(2, '*');
+
                 // 使用元素的显示方法
                 std::cout << taula[i][j].contigut->getSimbol() << " ";
             } else {
@@ -123,5 +138,6 @@ void Contenidor::mostrar() {
             }
         }
         std::cout << std::endl;
+
     }
 }
