@@ -3,8 +3,6 @@
 //
 
 #include "../../Headers/include/Contenidor.h"
-#include "../../Headers/include/Lletra.h"
-#include "../../Headers/include/Comodi.h"
 #include <iostream>
 #include <string>
 #include <random>

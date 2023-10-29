@@ -7,31 +7,37 @@
 #include "../Sources/src/Seleccio.cpp"
 
 int main() {
-    std::cout<<"Hello World";
+    int nivelDificultad;
 
-    Lletra c; //invoca el constructor per defecte
-    Lletra b(50,'B');
+    // Muestra el menú de selección del nivel de dificultad
+    std::cout << "Escoge el nivel de dificultad:" << std::endl;
+    std::cout << "1. Fácil" << std::endl;
+    std::cout << "2. Medio" << std::endl;
+    std::cout << "3. Difícil" << std::endl;
+    std::cin >> nivelDificultad;
 
-    //Element e; ERROR: no es pot inicialitzar un objecte d'una classe abstracte
-    //Element seleccionades[6]; MATEIX ERROR
 
-    Element *e;
-    e= new Lletra(50,'A');
+    int nFilas, nColumnas;
 
-    //Element *seleccionades;
-    //seleccionades = new Lletra[6];
-    // crea un array del tipus Element però inicialitzem amb el constructor per defecte de la filla Lletra
-
-    Element *seleccionades[6]; // 创建指针数组
-
-    for (int i = 0; i < 6; i++) {
-        seleccionades[i] = new Lletra(0, '_'); // 用 Lletra 对象初始化数组
+    // Determina las dimensiones de la matriz según la elección del usuario
+    switch (nivelDificultad) {
+        case 1:
+            nFilas = 4;
+            nColumnas = 6;
+            break;
+        case 2:
+            nFilas = 6;
+            nColumnas = 4;
+            break;
+        case 3:
+            nFilas = 8;
+            nColumnas = 3;
+            break;
+        default:
+            std::cout << "Opción no válida. Selecciona 1, 2 o 3." << std::endl;
+            return 1;
     }
 
-    // 释放动态分配的内存
-    for (int i = 0; i < 6; i++) {
-        delete seleccionades[i];
-    }
+    Contenidor* contenidor = new Contenidor(nFilas, nColumnas);
 
-    return 0;
 }
