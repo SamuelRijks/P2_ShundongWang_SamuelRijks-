@@ -3,7 +3,3 @@
 //
 
 #include "../../Headers/include/Comodi.h"
-class Comodi{
-public:
-
-};

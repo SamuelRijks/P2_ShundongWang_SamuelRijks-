@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include "Element.h"
-#include "../../Headers/include/Element.h"
+
 
 
 
@@ -17,11 +17,7 @@ private:
     int premi;
 public:
     Lletra() : Element('_') { this->premi = 0; }
-
-    Lletra(int premi, char simbol) : Element(simbol) {
-        this->premi = premi;
-    }
-
+    Lletra(int premi, char simbol) : Element(simbol) { this->premi = premi;}
 
     int getPremi() override{
         return this->premi;
