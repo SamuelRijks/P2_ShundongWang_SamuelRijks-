@@ -5,6 +5,8 @@
 #include "../Sources/src/Element.cpp"
 #include "../Sources/src/Comodi.cpp"
 #include "../Sources/src/Seleccio.cpp"
+#include "../Sources/src/Contenidor.cpp"
+
 
 int main() {
     int nivelDificultad;
