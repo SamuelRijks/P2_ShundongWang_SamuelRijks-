@@ -4,7 +4,7 @@ project(P2_ShundongWang_SamuelRijks)
 set(CMAKE_CXX_STANDARD 23)
 
 # Define the source files
-set(Headers Contenidor.h Comodi.h Element.h Lletra.h Seleccio.h Contenidor.h)
+set(Headers Contenidor.h Comodi.h Element.h Lletra.h Seleccio.h)
 
 # Define the include directories where the header files are located
 include_directories(Sources)
@@ -18,7 +18,3 @@ add_executable(P2_ShundongWang_SamuelRijks
         Sources/src/Lletra.cpp
         Sources/src/Element.cpp
 )
-
-# Link the executable with the necessary header files
-target_link_libraries(P2_ShundongWang_SamuelRijks ${Headers})
-

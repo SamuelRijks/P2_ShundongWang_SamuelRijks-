@@ -1,11 +1,7 @@
 #include <iostream>
 #include "../Headers/include/Lletra.h"
+#include "../Headers/include/Contenidor.h"
 
-#include "../Sources/src/Lletra.cpp"
-#include "../Sources/src/Element.cpp"
-#include "../Sources/src/Comodi.cpp"
-#include "../Sources/src/Seleccio.cpp"
-#include "../Sources/src/Contenidor.cpp"
 
 
 int main() {
@@ -13,9 +9,9 @@ int main() {
 
     // Muestra el menú de selección del nivel de dificultad
     std::cout << "Escoge el nivel de dificultad:" << std::endl;
-    std::cout << "1. Fácil" << std::endl;
+    std::cout << "1. Facil" << std::endl;
     std::cout << "2. Medio" << std::endl;
-    std::cout << "3. Difícil" << std::endl;
+    std::cout << "3. Dificil" << std::endl;
     std::cin >> nivelDificultad;
 
 
