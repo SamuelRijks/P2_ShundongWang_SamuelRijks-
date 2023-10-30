@@ -1,13 +1,17 @@
 #include <iostream>
 #include "../Headers/include/Lletra.h"
 #include "../Headers/include/Contenidor.h"
-#include "../Headers/include/Seleccio.h"
+#include "../Sources/src/Contenidor.cpp"
+#include "../Sources/src/Lletra.cpp"
+#include "../Sources/src/Comodi.cpp"
+#include "../Sources/src/Seleccio.cpp"
+#include "../Sources/src/Element.cpp"
 
 
 
 int main() {
     int nivelDificultad;
-
+    int numero;
     // Muestra el menú de selección del nivel de dificultad
     std::cout << "Escoge el nivel de dificultad:" << std::endl;
     std::cout << "1. Facil" << std::endl;
@@ -45,8 +49,13 @@ int main() {
 
     std::cout << "Lletres disponibles" << std::endl;
     contenidor->mostrar();
+    do {
+        std::cout << "Especifica una columna dins de l´interval [1,6] o 0 per seleccionar l´esteric:" << std::endl;
+        std::cin >> numero;
 
-
-
+        if (numero >= 0 || numero <= 6) {
+            std::cout << "Número fuera de rango. Debes ingresar un número entre 1 y 6 o 0 para seleccionar el esteric." << std::endl;
+        }
+    } while (numero < 0 || numero > 7);
 
 }

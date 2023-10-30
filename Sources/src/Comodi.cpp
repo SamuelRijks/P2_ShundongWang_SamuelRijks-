@@ -6,15 +6,15 @@ Comodi::Comodi() : Element('*'){
 }
 
 Comodi::Comodi(int premi, char simbol) : Element(simbol) {
-        this->premi = premi;
+    this->premi = premi;
 }
 
 int Comodi::getPremi() {
-        return premi;
+    return premi;
 }
 
 char Comodi::getSimbol() {
-        return Element::getSimbol();
+    return Element::getSimbol();
 }
 
 bool Comodi::operator==(Element *other) {
@@ -32,6 +32,3 @@ bool Comodi::operator!=(Element *other) {
 void Comodi::mostrar() {
     std::cout << getSimbol();
 }
-
-
-

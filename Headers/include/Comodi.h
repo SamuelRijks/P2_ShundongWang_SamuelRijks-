@@ -25,5 +25,4 @@ public:
 
 };
 
-
 #endif //P2_SHUNDONGWANG_SAMUELRIJKS_COMODI_H
