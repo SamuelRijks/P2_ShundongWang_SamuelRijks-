@@ -23,31 +23,36 @@ bool Seleccio::afegir(Element* element) {
 
 bool Seleccio::eliminar3iguals() {
     int numEliminados = 0;  // 记录已经删除的元素个数
+
     for (int i = 0; i < mida - 2; ++i) {
         for (int j = i + 1; j < mida - 1; ++j) {
             for (int k = j + 1; k < mida; ++k) {
-                if (array[i] && array[j] && array[k]) {
-                    if ((array[i]->getSimbol() == array[j]->getSimbol()==array[k]->getSimbol() )||
-                            (array[i]->getSimbol() == array[j]->getSimbol() && array[k]->getSimbol() == '*') ||
-                            (array[i]->getSimbol() == array[k]->getSimbol() && array[j]->getSimbol() == '*') ||
-                            (array[j]->getSimbol() == array[k]->getSimbol() && array[i]->getSimbol() == '*')) {
+
+                    if (array[i]->getPremi()!=0 && array[j]->getPremi()!=0 && array[k]->getPremi()!=0) {
+                        if (array[i]->getSimbol() == array[j]->getSimbol() &&
+                            array[i]->getSimbol() == array[k]->getSimbol())
                         // 找到三个相同或两个相同一个为 "*" 的情况
-                        delete array[i];
+                        std::cout << "numero123 " <<  std::endl;
+                        /*delete array[i];
                         delete array[j];
-                        delete array[k];
-                        array[i] = nullptr;
-                        array[j] = nullptr;
-                        array[k] = nullptr;
+                        delete array[k];*/
+                        array[i] = new Lletra();
+                        array[j] = new Lletra();
+                        array[k] = new Lletra();
                         premiFinal += 150;
                         numEliminados += 3;
                     }
                 }
             }
         }
-    }
 
     return numEliminados > 0;
 }
+
+/*||
+                            (array[i]->operator==(array[j]) && array[k]->getSimbol() == '*') ||
+                            (array[i]->operator==(array[k])) && array[j]->getSimbol() == '*') ||
+                            (array[j]->operator==(array[k])&& array[i]->getSimbol() == '*')) */
 
 
 int Seleccio::getPremiFinal() {
