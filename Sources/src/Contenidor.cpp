@@ -20,7 +20,7 @@ Contenidor::Contenidor(int nRow, int nCol) {
     for (int i = 0; i < nCol; ++i) {
         taula[i] = nullptr;
     }
-    int getArrayLength = sizeof(taula) / sizeof(int);;
+    int getArrayLength = nCol; // Obtener el número de columnas
     std::cout << getArrayLength;
 
     char availableChars[] = {'A', 'B', 'C', 'D', '*', '*'};
@@ -170,28 +170,44 @@ int Contenidor::getQuants() {
 
 
 void Contenidor::mostrar() {
-    for (int j = 0; j < nCol; j++) { // Recorre las columnas
-        for (int i = 0; i < nRow; i++) { // Recorre las filas
-            if (taula[i] != nullptr) {
-                node* actual = taula[i];
-                for (int k = 0; k < j; k++) {
-                    if (actual != nullptr) {
-                        actual = actual->seguent;
-                    }
-                }
-                if (actual != nullptr) {
-                    Element* contenido = actual->contigut;
-                    std::cout << contenido->getSimbol() << " ";
-                } else {
-                    std::cout << "  "; // Espacio en blanco si no hay nodo en esta columna
-                }
-            } else {
-                std::cout << "  "; // Espacio en blanco si no hay nodos en esta fila
-            }
-        }
-        std::cout << std::endl; // Nueva línea al cambiar de columna
+    std::string** taulaMostrar = new std::string*[nRow];  // Declara un arreglo de punteros a filas
+
+    for (int i = 0; i < nRow; i++) {
+        taulaMostrar[i] = new std::string[nCol];  // Crea cada fila con un arreglo de columnas
     }
+
+    for (int i = 0; i < nCol; i++) {
+        node* actual = taula[i];  // Inicio de la fila
+        int cont=0;
+        while (actual != nullptr) {
+            // Accede al contenido del nodo actual
+            Element* contenido = actual->contigut;
+            // Realiza operaciones con el contenido si es necesario
+            taulaMostrar[cont][i] = contenido->getSimbol();
+
+            actual = actual->seguent;  // Avanza al siguiente nodo en la fila
+            cont++;
+        }
+    }
+
+    imprimirMatriu(taulaMostrar);
+
+    for (int i = 0; i < nRow; i++) {
+        delete[] taulaMostrar[i];
+    }
+    delete[] taulaMostrar;
 }
+
+void Contenidor::imprimirMatriu(std::string** matriu){
+    for (int i = 0; i < nRow; i++) {
+        for (int j = 0; j < nCol; j++) {
+            std::cout << matriu[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+}
+
 
 
 

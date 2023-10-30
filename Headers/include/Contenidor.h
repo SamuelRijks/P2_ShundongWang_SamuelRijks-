@@ -28,9 +28,11 @@ public:
     int getQuants();
     void mostrar();
     Element* EliminarYDevolverElemento(int col);
+    void imprimirMatriu(std::string** matriu);
 
 
-};
+
+    };
 
 
 #endif //P2_SHUNDONGWANG_SAMUELRIJKS_CONTENIDOR_H
