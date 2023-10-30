@@ -60,23 +60,26 @@ Contenidor::Contenidor(int nRow, int nCol) {
     }
 }
 
-
-Contenidor::~Contenidor() {
-    for (int i = 0; i < nRow; ++i) {
-        delete[] taula[i];
-    }
-    delete[] taula;
-}
-
 void Contenidor::afegirElement(Element* element) {
-    // 实现将元素添加到表格的逻辑
     // 遍历 taula，找到第一个为空的元素位置，并添加 element
     for (int i = 0; i < nRow; ++i) {
         for (int j = 0; j < nCol; ++j) {
-            if (taula[i][j].contigut == nullptr) {
-                taula[i][j].contigut = element;
+            node* current = taula[i][j].seguent;
+            if (current == nullptr) {
+                node* newNode = new node;
+                newNode->contigut = element;
+                newNode->seguent = nullptr;
+                taula[i][j].seguent = newNode;
                 return;
             }
+            while (current->seguent != nullptr) {
+                current = current->seguent;
+            }
+            node* newNode = new node;
+            newNode->contigut = element;
+            newNode->seguent = nullptr;
+            current->seguent = newNode;
+            return;
         }
     }
 }
@@ -89,9 +92,11 @@ Element* Contenidor::EliminaPerColumna(int col) {
     col--; // Ajustar el índice a partir de 0
 
     for (int i = 0; i < nRow; ++i) {
-        if (taula[i][col].contigut != nullptr) {
-            Element* removedElement = taula[i][col].contigut;
-            taula[i][col].contigut = nullptr;
+        node* current = taula[i][col].seguent;
+        if (current != nullptr) {
+            Element* removedElement = current->contigut;
+            taula[i][col].seguent = current->seguent;
+            delete current;
             return removedElement;
         }
     }
@@ -102,9 +107,11 @@ Element* Contenidor::EliminaPerColumna(int col) {
 Element* Contenidor::EliminaComodi() {
     for (int i = 0; i < nRow; ++i) {
         for (int j = 0; j < nCol; ++j) {
-            if (taula[i][j].contigut != nullptr && taula[i][j].contigut->getPremi() == '*') {
-                Element* removedElement = taula[i][j].contigut;
-                taula[i][j].contigut = nullptr;
+            node* current = taula[i][j].seguent;
+            if (current != nullptr && current->contigut->getPremi() == '*') {
+                Element* removedElement = current->contigut;
+                taula[i][j].seguent = current->seguent;
+                delete current;
                 return removedElement;
             }
         }
@@ -138,3 +145,6 @@ void Contenidor::mostrar() {
 
     }
 }
+
+
+

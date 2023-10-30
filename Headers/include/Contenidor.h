@@ -27,6 +27,8 @@ public:
     Element* EliminaComodi();
     int getQuants();
     void mostrar();
+    Element* EliminarYDevolverElemento(int col);
+
 
 };
 

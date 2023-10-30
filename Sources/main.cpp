@@ -53,9 +53,14 @@ int main() {
         std::cout << "Especifica una columna dins de l´interval [1,6] o 0 per seleccionar l´esteric:" << std::endl;
         std::cin >> numero;
 
-        if (numero >= 0 || numero <= 6) {
+        if (numero < 0 || numero > 6) {
             std::cout << "Número fuera de rango. Debes ingresar un número entre 1 y 6 o 0 para seleccionar el esteric." << std::endl;
         }
     } while (numero < 0 || numero > 7);
+
+    Element* removedElement = contenidor->EliminaPerColumna(numero);
+    removedElement->mostrar();
+
+
 
 }
