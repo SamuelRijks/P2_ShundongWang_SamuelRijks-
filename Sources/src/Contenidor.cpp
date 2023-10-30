@@ -140,19 +140,33 @@ Element* Contenidor::EliminaPerColumna(int col) {
 }
 
 Element* Contenidor::EliminaComodi() {
-    for (int i = 0; i < nRow; ++i) {
-        for (int j = 0; j < nCol; ++j) {
-            node* current = taula[i][j].seguent;
-            if (current != nullptr && current->contigut->getPremi() == '*') {
-                Element* removedElement = current->contigut;
-                taula[i][j].seguent = current->seguent;
-                delete current;
-                return removedElement;
+    Comodi *comodi = new Comodi();
+    for (int i = 0; i < nCol; i++) {
+        node* actual = taula[i];
+        node* anterior = nullptr;
+        while (actual != nullptr) {
+            Element* contenido = actual->contigut;
+            if (contenido->operator==(comodi)) {
+                if(anterior == nullptr){
+                    // Suponiendo que esComodi() verifica si es un comodín
+                    taula[i] = taula[i]->seguent;
+                }
+                else{
+                    anterior->seguent = actual->seguent;
+                }
+                delete actual;
+                return contenido;
+
+
             }
+            anterior = actual;
+            actual = actual->seguent;
         }
     }
 
-    throw std::runtime_error("No se encontró el comodín");
+    // Si llegamos aquí, significa que no se encontró ningún comodín
+
+    throw std::invalid_argument("No se ha encontrado ningún comodín en la taula.");
 }
 
 int Contenidor::getQuants() {

@@ -11,6 +11,8 @@
 
 
 int main() {
+
+
     int nivelDificultad;
     int numero;
     // Muestra el menú de selección del nivel de dificultad

@@ -13,7 +13,7 @@
     }
     bool Seleccio::afegir(Element* element) {
         for (int i = 0; i < mida; ++i) {
-            if (array[i] == nullptr) {
+            if (array[i]->getSimbol() == '_') {
                 array[i] = element;
                 return true;
             }
@@ -34,7 +34,7 @@
                     array[i + 1] = nullptr;
                     array[i + 2] = nullptr;
                     // 更新premiFinal，根据你的需求可能需要计算分数
-                    premiFinal += 3;
+                    premiFinal += 150;
                     return true;  // 表示成功删除3个相同元素
                 }
             }
@@ -55,4 +55,6 @@
             }
         }
 
-};
+        std::cout << std::endl;
+
+    };
