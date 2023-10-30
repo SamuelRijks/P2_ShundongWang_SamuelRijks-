@@ -16,8 +16,8 @@ Contenidor::Contenidor(int nRow, int nCol) {
     this->nRow = nRow;
     this->nCol = nCol;
 
-    taula = new node*[nRow];
-    for (int i = 0; i < nRow; ++i) {
+    taula = new node*[nCol];
+    for (int i = 0; i < nCol; ++i) {
         taula[i] = nullptr;
     }
     int getArrayLength = sizeof(taula) / sizeof(int);;
@@ -121,35 +121,19 @@ Element* Contenidor::EliminaPerColumna(int col) {
     col -= 1;
 
     // Verificar si la columna está vacía
-    if (taula[0][col].contigut == nullptr) {
+    if (taula[col] == nullptr) {
         // Lanzar una excepción personalizada si la columna está vacía
         throw std::runtime_error("La columna está vacía");
-
     }
-
     // Obtener el primer elemento de la columna
-    Element *elementoAEliminar = taula[0][col].contigut;
 
-    std::cout << elementoAEliminar->getSimbol() << endl;
+    node* firstNode = taula[col];
+    Element *elementoAEliminar = firstNode->contigut;
 
-    node* firstNode = &taula[0][col];
-    Element* removedElement = nullptr;
-    while (firstNode != nullptr) {
-        node *currentNode = firstNode->seguent;
-        if (currentNode != nullptr) {
-            //Eliminar el nodo actual
-            removedElement = currentNode->contigut;
-            std::cout <<removedElement->getSimbol();
-            //delete currentNode;
-            firstNode->seguent = currentNode->seguent;
-        } else {
-            // Si no hay ningún siguiente nodo, salimos del ciclo
-            break;
-        }
-    }
+    taula[col] = taula[col]->seguent;
 
 
-return removedElement;
+    return elementoAEliminar;
 
 
 
