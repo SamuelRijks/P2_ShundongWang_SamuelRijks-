@@ -1,11 +1,12 @@
 #include <iostream>
 #include "../Headers/include/Lletra.h"
 #include "../Headers/include/Contenidor.h"
-#include "../Sources/src/Contenidor.cpp"
+#include "../Headers/include/Seleccio.h"
+/*#include "../Sources/src/Contenidor.cpp"
 #include "../Sources/src/Lletra.cpp"
 #include "../Sources/src/Comodi.cpp"
 #include "../Sources/src/Seleccio.cpp"
-#include "../Sources/src/Element.cpp"
+#include "../Sources/src/Element.cpp"*/
 
 
 
@@ -50,7 +51,7 @@ int main() {
     std::cout << "Lletres disponibles" << std::endl;
     contenidor->mostrar();
     do {
-        std::cout << "Especifica una columna dins de l´interval [1,6] o 0 per seleccionar l´esteric:" << std::endl;
+        std::cout << "Especifica una columna dins de interval [1,6] o 0 per seleccionar esteric:" << std::endl;
         std::cin >> numero;
 
         if (numero < 0 || numero > 6) {
