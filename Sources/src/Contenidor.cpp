@@ -30,33 +30,41 @@ Contenidor::Contenidor(int nRow, int nCol) {
     int randomIndex;
     int contComodins = 0;
     for (int i = 0; i < nRow; ++i) {
-        taula[i] = new node[nCol];
+        node *anterior = nullptr; //secuencia enlazada de cada fila
         for (int j = 0; j < nCol; ++j) {
-            if (contComodins < 2) {
-                randomIndex = dist(gen); // Declare it here
-            } else {
-                // No generes más asteriscos, simplemente usa otro valor disponible
-                randomIndex = dist(gen);
-                while (availableChars[randomIndex] == '*') {
-                    randomIndex = dist(gen);
+            int randomIndex = dist(gen);
+            char character = availableChars[randomIndex];
+            int premiValue = randomIndex;
+
+            if(randomIndex <4 &&randomIndex >= 0){
+                Element* element = new Lletra(premiValue, character);
+                node* nuevoNodo = new node;
+                nuevoNodo->contigut = element;
+                nuevoNodo->seguent = nullptr;
+
+                if (anterior) {
+                    anterior->seguent = nuevoNodo;  // Enlaza el nuevo nodo con el anterior
+                } else {
+                    taula[i] = nuevoNodo;  // Si es el primer nodo de la fila, establece taula[i]
                 }
+                anterior = nuevoNodo;
+            }
+             else {
+                Element* element = new Comodi(premiValue, character);
+                node* nuevoNodo = new node;
+                nuevoNodo->contigut = element;
+                nuevoNodo->seguent = nullptr;
+                if (anterior) {
+                    anterior->seguent = nuevoNodo;  // Enlaza el nuevo nodo con el anterior
+                } else {
+                    taula[i] = nuevoNodo;  // Si es el primer nodo de la fila, establece taula[i]
+                }
+                anterior = nuevoNodo;
             }
 
-            if (randomIndex < 4 && randomIndex >= 0) {
-                char A = availableChars[randomIndex];
-                int premiValue = randomIndex;
-                Element* element = new Lletra(premiValue, A);
-                taula[i][j].contigut = element;
-                taula[i][j].seguent = nullptr;
-            } else {
-                char B = availableChars[randomIndex];
-                int premiValue2 = randomIndex;
-                Element* element = new Comodi(premiValue2, B);
-                taula[i][j].contigut = element;
-                taula[i][j].seguent = nullptr;
-                contComodins++;
-            }
+
         }
+
     }
 }
 
