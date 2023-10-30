@@ -3,9 +3,11 @@
 //
 
 #include "../../Headers/include/Seleccio.h"
+#include "../../Headers/include/Lletra.h"
+
     Seleccio::Seleccio() {
         for (int i = 0; i < mida; ++i) {
-            array[i] = nullptr;
+            array[i] = new Lletra();
         }
         premiFinal = 0;
     }
@@ -49,6 +51,7 @@
             if (array[i] != nullptr) {
                 // 使用元素的显示方法
                 array[i]->mostrar();
+
             }
         }
 

@@ -41,6 +41,8 @@ int main() {
     Seleccio* seleccio = new Seleccio();
     std::cout << "Seleccioneu 3 lletres iguals:" << std::endl;
     seleccio->mostrar();
+    std::cout << "" << std::endl;
+
     std::cout << "Lletres disponibles" << std::endl;
     contenidor->mostrar();
 
