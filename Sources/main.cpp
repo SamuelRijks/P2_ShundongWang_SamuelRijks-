@@ -60,8 +60,7 @@ int main() {
     } while (numero < 0 || numero > 7);
 
     Element* removedElement = contenidor->EliminaPerColumna(numero);
-    removedElement->mostrar();
-
+    contenidor->mostrar();
 
 
 }

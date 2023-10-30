@@ -85,23 +85,42 @@ void Contenidor::afegirElement(Element* element) {
 }
 
 Element* Contenidor::EliminaPerColumna(int col) {
-    if (col < 1 || col > nCol) {
-        throw std::out_of_range("Índice de columna fuera de rango");
+    // Verificar si la columna está dentro de los límites
+    col -= 1;
+
+    // Verificar si la columna está vacía
+    if (taula[0][col].contigut == nullptr) {
+        // Lanzar una excepción personalizada si la columna está vacía
+        throw std::runtime_error("La columna está vacía");
+
     }
 
-    col--; // Ajustar el índice a partir de 0
+    // Obtener el primer elemento de la columna
+    Element *elementoAEliminar = taula[0][col].contigut;
 
-    for (int i = 0; i < nRow; ++i) {
-        node* current = taula[i][col].seguent;
-        if (current != nullptr) {
-            Element* removedElement = current->contigut;
-            taula[i][col].seguent = current->seguent;
-            delete current;
-            return removedElement;
+    std::cout << elementoAEliminar->getSimbol() << endl;
+
+    node* firstNode = &taula[0][col];
+    Element* removedElement = nullptr;
+    while (firstNode != nullptr) {
+        node *currentNode = firstNode->seguent;
+        if (currentNode != nullptr) {
+            //Eliminar el nodo actual
+            removedElement = currentNode->contigut;
+            std::cout <<removedElement->getSimbol();
+            //delete currentNode;
+            firstNode->seguent = currentNode->seguent;
+        } else {
+            // Si no hay ningún siguiente nodo, salimos del ciclo
+            break;
         }
     }
 
-    throw std::runtime_error("La columna está vacía");
+
+return removedElement;
+
+
+
 }
 
 Element* Contenidor::EliminaComodi() {
