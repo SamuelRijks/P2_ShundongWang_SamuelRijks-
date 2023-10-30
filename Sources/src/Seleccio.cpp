@@ -5,56 +5,64 @@
 #include "../../Headers/include/Seleccio.h"
 #include "../../Headers/include/Lletra.h"
 
-    Seleccio::Seleccio() {
-        for (int i = 0; i < mida; ++i) {
-            array[i] = new Lletra();
-        }
-        premiFinal = 0;
+Seleccio::Seleccio() {
+    for (int i = 0; i < mida; ++i) {
+        array[i] = new Lletra();
     }
-    bool Seleccio::afegir(Element* element) {
-        for (int i = 0; i < mida; ++i) {
-            if (array[i]->getSimbol() == '_') {
-                array[i] = element;
-                return true;
-            }
+    premiFinal = 0;
+}
+bool Seleccio::afegir(Element* element) {
+    for (int i = 0; i < mida; ++i) {
+        if (array[i]->getSimbol() == '_') {
+            array[i] = element;
+            return true;
         }
-        return false;
     }
+    return false;
+}
 
-    bool Seleccio::eliminar3iguals() {
-        // 实现删除3个相同元素的逻辑
-        // 这里需要你根据具体需求实现
-        for (int i = 0; i < mida - 2; ++i) {
-            if (array[i] != nullptr && array[i + 1] != nullptr && array[i + 2] != nullptr) {
-                if (*array[i] == array[i + 1] && *array[i] == array[i + 2]) {
-                    delete array[i];
-                    delete array[i + 1];
-                    delete array[i + 2];
-                    array[i] = nullptr;
-                    array[i + 1] = nullptr;
-                    array[i + 2] = nullptr;
-                    // 更新premiFinal，根据你的需求可能需要计算分数
-                    premiFinal += 150;
-                    return true;  // 表示成功删除3个相同元素
+bool Seleccio::eliminar3iguals() {
+    int numEliminados = 0;  // 记录已经删除的元素个数
+    for (int i = 0; i < mida - 2; ++i) {
+        for (int j = i + 1; j < mida - 1; ++j) {
+            for (int k = j + 1; k < mida; ++k) {
+                if (array[i] && array[j] && array[k]) {
+                    if ((array[i]->getSimbol() == array[j]->getSimbol()==array[k]->getSimbol() )||
+                            (array[i]->getSimbol() == array[j]->getSimbol() && array[k]->getSimbol() == '*') ||
+                            (array[i]->getSimbol() == array[k]->getSimbol() && array[j]->getSimbol() == '*') ||
+                            (array[j]->getSimbol() == array[k]->getSimbol() && array[i]->getSimbol() == '*')) {
+                        // 找到三个相同或两个相同一个为 "*" 的情况
+                        delete array[i];
+                        delete array[j];
+                        delete array[k];
+                        array[i] = nullptr;
+                        array[j] = nullptr;
+                        array[k] = nullptr;
+                        premiFinal += 150;
+                        numEliminados += 3;
+                    }
                 }
             }
         }
-        return false;  // 没有删除3个相同元素
     }
 
-    int Seleccio::getPremiFinal() {
-        return premiFinal;
-    }
+    return numEliminados > 0;
+}
 
-    void Seleccio::mostrar() {
-        for (int i = 0; i < mida; ++i) {
-            if (array[i] != nullptr) {
-                // 使用元素的显示方法
-                array[i]->mostrar();
 
-            }
+int Seleccio::getPremiFinal() {
+    return premiFinal;
+}
+
+void Seleccio::mostrar() {
+    for (int i = 0; i < mida; ++i) {
+        if (array[i] != nullptr) {
+            // 使用元素的显示方法
+            array[i]->mostrar();
+
         }
+    }
 
-        std::cout << std::endl;
+    std::cout << std::endl;
 
-    };
+};
