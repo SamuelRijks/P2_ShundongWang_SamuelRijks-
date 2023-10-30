@@ -55,14 +55,30 @@ int main() {
     do {
         std::cout << "Especifica una columna dins de interval [1,6] o 0 per seleccionar esteric:" << std::endl;
         std::cin >> numero;
-
         if (numero < 0 || numero > 6) {
             std::cout << "Número fuera de rango. Debes ingresar un número entre 1 y 6 o 0 para seleccionar el esteric." << std::endl;
         }
     } while (numero < 0 || numero > 7);
+        Element* element;
+    if(numero==0){
+        try {
+            element = contenidor->EliminaComodi();
+            // Hacer algo con el comodín encontrado
+        } catch (std::invalid_argument) {
+                std::cout << "No hi han esterics" << std::endl;
+            // Manejar la excepción aquí, por ejemplo, mostrar un mensaje de error
+        }
+    }
+    else{
+    element = contenidor->EliminaPerColumna(numero);
 
-    Element* removedElement = contenidor->EliminaPerColumna(numero);
+    }
+
+    std::cout << element->getSimbol() << std::endl;
+    seleccio->eliminar3iguals();
+    std::cout << "Lletra seleccionada: " << element->getSimbol() << " punts guanyats " << seleccio->getPremiFinal() << std::endl;
+    seleccio->afegir(element);
+    seleccio->mostrar();
     contenidor->mostrar();
-
 
 }
