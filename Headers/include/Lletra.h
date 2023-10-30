@@ -22,6 +22,8 @@ public:
 
     bool operator==(Element *other) override;
     bool operator!=(Element *other) override;
+    void mostrar() override;
+
 };
 
 

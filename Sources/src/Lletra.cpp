@@ -3,7 +3,8 @@
 //
 #include "../../Headers/include/Lletra.h"
 
-Lletra::Lletra() : Element('_') {
+Lletra::Lletra() {
+
     this->premi = 0;
 }
 
@@ -27,4 +28,7 @@ bool Lletra::operator!=(Element *other) {
     return true;
 }
 
+void Lletra::mostrar() {
+    std::cout << getSimbol();
+}
 

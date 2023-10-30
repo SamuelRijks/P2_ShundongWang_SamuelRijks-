@@ -129,8 +129,6 @@ void Contenidor::mostrar() {
     for (int i = 0; i < nRow; ++i) {
         for (int j = 0; j < nCol; ++j) {
             if (taula[i][j].contigut != nullptr) {
-
-                // 使用元素的显示方法
                 std::cout << taula[i][j].contigut->getSimbol() << " ";
             } else {
                 std::cout << " " << " ";

@@ -45,11 +45,11 @@
     }
 
     void Seleccio::mostrar() {
-        /*for (int i = 0; i < mida; ++i) {
+        for (int i = 0; i < mida; ++i) {
             if (array[i] != nullptr) {
                 // 使用元素的显示方法
                 array[i]->mostrar();
             }
-        }*/
+        }
 
 };

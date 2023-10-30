@@ -29,5 +29,9 @@ bool Comodi::operator!=(Element *other) {
     return (otherComodi == nullptr);
 }
 
+void Comodi::mostrar() {
+    std::cout << getSimbol();
+}
+
 
 

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../Headers/include/Lletra.h"
 #include "../Headers/include/Contenidor.h"
+#include "../Headers/include/Seleccio.h"
 
 
 
@@ -37,8 +38,9 @@ int main() {
     }
 
     Contenidor* contenidor = new Contenidor(nFilas, nColumnas);
+    Seleccio* seleccio = new Seleccio();
     std::cout << "Seleccioneu 3 lletres iguals:" << std::endl;
-    std::cout << "_ _ _ _ _ _" << std::endl;
+    seleccio->mostrar();
     std::cout << "Lletres disponibles" << std::endl;
     contenidor->mostrar();
 
