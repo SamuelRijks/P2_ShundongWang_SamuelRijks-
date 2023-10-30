@@ -20,6 +20,8 @@ Contenidor::Contenidor(int nRow, int nCol) {
     for (int i = 0; i < nRow; ++i) {
         taula[i] = nullptr;
     }
+    int getArrayLength = sizeof(taula) / sizeof(int);;
+    std::cout << getArrayLength;
 
     char availableChars[] = {'A', 'B', 'C', 'D', '*', '*'};
 
@@ -27,11 +29,10 @@ Contenidor::Contenidor(int nRow, int nCol) {
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dist(0, 5);
 
-    int randomIndex;
     int contComodins = 0;
-    for (int i = 0; i < nRow; ++i) {
+    for (int i = 0; i < nCol; ++i) {
         node *anterior = nullptr; //secuencia enlazada de cada fila
-        for (int j = 0; j < nCol; ++j) {
+        for (int j = 0; j < nRow; ++j) {
             int randomIndex = dist(gen);
             char character = availableChars[randomIndex];
             int premiValue = randomIndex;
@@ -42,7 +43,7 @@ Contenidor::Contenidor(int nRow, int nCol) {
                 nuevoNodo->contigut = element;
                 nuevoNodo->seguent = nullptr;
 
-                if (anterior) {
+                if (anterior != nullptr) {
                     anterior->seguent = nuevoNodo;  // Enlaza el nuevo nodo con el anterior
                 } else {
                     taula[i] = nuevoNodo;  // Si es el primer nodo de la fila, establece taula[i]
@@ -50,16 +51,39 @@ Contenidor::Contenidor(int nRow, int nCol) {
                 anterior = nuevoNodo;
             }
              else {
-                Element* element = new Comodi(premiValue, character);
-                node* nuevoNodo = new node;
-                nuevoNodo->contigut = element;
-                nuevoNodo->seguent = nullptr;
-                if (anterior) {
-                    anterior->seguent = nuevoNodo;  // Enlaza el nuevo nodo con el anterior
-                } else {
-                    taula[i] = nuevoNodo;  // Si es el primer nodo de la fila, establece taula[i]
+                if(contComodins < 2){
+                    Element* element = new Comodi(premiValue, character);
+
+                    node* nuevoNodo = new node;
+                    nuevoNodo->contigut = element;
+                    nuevoNodo->seguent = nullptr;
+                    if (anterior != nullptr) {
+                        anterior->seguent = nuevoNodo;  // Enlaza el nuevo nodo con el anterior
+                    } else {
+                        taula[i] = nuevoNodo;  // Si es el primer nodo de la fila, establece taula[i]
+                    }
+                    anterior = nuevoNodo;
+                    contComodins++;
                 }
-                anterior = nuevoNodo;
+                else{
+                    randomIndex = dist(gen);
+                    while (availableChars[randomIndex] == '*') {
+                        randomIndex = dist(gen);
+                    }
+                    Element* element = new Lletra(randomIndex, availableChars[randomIndex]);
+                    node* nuevoNodo = new node;
+                    nuevoNodo->contigut = element;
+                    nuevoNodo->seguent = nullptr;
+
+                    if (anterior != nullptr) {
+                        anterior->seguent = nuevoNodo;  // Enlaza el nuevo nodo con el anterior
+                    } else {
+                        taula[i] = nuevoNodo;  // Si es el primer nodo de la fila, establece taula[i]
+                    }
+                    anterior = nuevoNodo;
+                }
+
+
             }
 
 
@@ -159,19 +183,33 @@ int Contenidor::getQuants() {
     return count;
 }
 
+
+
 void Contenidor::mostrar() {
-    for (int i = 0; i < nRow; ++i) {
-        for (int j = 0; j < nCol; ++j) {
-            if (taula[i][j].contigut != nullptr) {
-                std::cout << taula[i][j].contigut->getSimbol() << " ";
+    for (int j = 0; j < nCol; j++) { // Recorre las columnas
+        for (int i = 0; i < nRow; i++) { // Recorre las filas
+            if (taula[i] != nullptr) {
+                node* actual = taula[i];
+                for (int k = 0; k < j; k++) {
+                    if (actual != nullptr) {
+                        actual = actual->seguent;
+                    }
+                }
+                if (actual != nullptr) {
+                    Element* contenido = actual->contigut;
+                    std::cout << contenido->getSimbol() << " ";
+                } else {
+                    std::cout << "  "; // Espacio en blanco si no hay nodo en esta columna
+                }
             } else {
-                std::cout << " " << " ";
+                std::cout << "  "; // Espacio en blanco si no hay nodos en esta fila
             }
         }
-        std::cout << std::endl;
-
+        std::cout << std::endl; // Nueva línea al cambiar de columna
     }
 }
+
+
 
 
 
