@@ -97,8 +97,6 @@ void Juego() {
         seleccio->eliminar3iguals();
         std::cout << "Lletra seleccionada: " << element->getSimbol() << " punts guanyats " << seleccio->getPremiFinal() << std::endl;
 
-        // 检查游戏是否结束的逻辑，例如通过某个条件判断
-
         if (contenidor->getQuants() == 0) {
             std::cout << "se acabó el espacio!" << std::endl;
             std::cout << "Punts total: " << seleccio->getPremiFinal() << std::endl;

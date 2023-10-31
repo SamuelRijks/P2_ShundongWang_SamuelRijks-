@@ -33,20 +33,20 @@ bool Seleccio::eliminar3iguals() {
 
                 /*if (reinterpret_cast<const char *>(array[i]->getSimbol()) != "_" && reinterpret_cast<const char *>(array[j]->getSimbol()) != "_"&& reinterpret_cast<const char *>(array[k]->getSimbol()) != "_") {*/
                 /*if (array[i]->operator!=(a) && array[j]->operator!=(a) && array[k]->operator!=(a)) {*/
-                    if (array[i]->getPremi()!=0 && array[j]->getPremi()!=0 && array[k]->getPremi()!=0) {
+                if (array[i]->getPremi()!=0 && array[j]->getPremi()!=0 && array[k]->getPremi()!=0) {
                     /* if (array[i]->getPremi() == array[j]->getPremi() &&
                          array[i]->getPremi() == array[k]->getPremi()){/*
                      /*if (array[i]->operator==(array[j]) &&
                              (array[i]->operator==(array[k])){*/
                     if (array[i]->operator==(array[j]) &&(array[i]->operator==(array[k]))){
-                    /*delete array[i];
-                    delete array[j];
-                    delete array[k];*/
-                    array[i] = new Lletra();
-                    array[j] = new Lletra();
-                    array[k] = new Lletra();
-                    premiFinal += 150;
-                    numEliminados += 3;
+                        /*delete array[i];
+                        delete array[j];
+                        delete array[k];*/
+                        array[i] = new Lletra();
+                        array[j] = new Lletra();
+                        array[k] = new Lletra();
+                        premiFinal += 150;
+                        numEliminados += 3;
                     }
 
                     else if ((array[i]->getPremi() == array[j]->getPremi() && array[k]->getPremi() > 4) ||

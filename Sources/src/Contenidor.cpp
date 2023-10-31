@@ -8,8 +8,6 @@
 #include <iostream>
 #include <string>
 #include <random>
-
-
 using namespace  std;
 
 Contenidor::Contenidor(int nRow, int nCol) {
@@ -26,32 +24,21 @@ Contenidor::Contenidor(int nRow, int nCol) {
 
     std::random_device rd;
     std::mt19937 gen(rd());
-
-    int contComodins = 0;
     for (int i = 0; i < nCol; ++i) {
         node *anterior = nullptr; //secuencia enlazada de cada fila
         for (int j = 0; j < nRow; ++j) {
-            if (numbers.empty()) {
-                // 检查numbers数组是否为空
-                // 如果为空，你可以选择一个默认字符或采取其他操作
-                break;
-            }
-
             // 随机生成一个索引，这个索引将用于从numbers数组中获取数字
             std::uniform_int_distribution<> distIndex(0, numbers.size() - 1);
             int index = distIndex(gen);
-
             // 从numbers数组中获取一个数字并从数组中删除
             int randomIndex = numbers[index];
             numbers.erase(numbers.begin() + index);
-
             if (randomIndex >= 0 && randomIndex < 5) {
                 char character = availableChars[randomIndex];
                 Element* element = new Lletra(randomIndex, character);
                 node* nuevoNodo = new node;
                 nuevoNodo->contigut = element;
                 nuevoNodo->seguent = nullptr;
-
                 if (anterior != nullptr) {
                     anterior->seguent = nuevoNodo;
                 } else {
@@ -65,7 +52,6 @@ Contenidor::Contenidor(int nRow, int nCol) {
                 node* nuevoNodo = new node;
                 nuevoNodo->contigut = element;
                 nuevoNodo->seguent = nullptr;
-
                 if (anterior != nullptr) {
                     anterior->seguent = nuevoNodo;
                 } else {
@@ -73,8 +59,6 @@ Contenidor::Contenidor(int nRow, int nCol) {
                 }
                 anterior = nuevoNodo;
             }else {
-                // 处理 randomIndex 超出范围的情况
-                // 可以选择默认字符或其他操作
             }
         }
     }
@@ -107,7 +91,6 @@ void Contenidor::afegirElement(Element* element) {
 Element* Contenidor::EliminaPerColumna(int col) {
     // Verificar si la columna está dentro de los límites
     col -= 1;
-
     // Verificar si la columna está vacía
     if (taula[col] == nullptr) {
         // Lanzar una excepción personalizada si la columna está vacía
@@ -115,17 +98,10 @@ Element* Contenidor::EliminaPerColumna(int col) {
         return nullptr;
     }
     // Obtener el primer elemento de la columna
-
     node* firstNode = taula[col];
     Element *elementoAEliminar = firstNode->contigut;
-
     taula[col] = taula[col]->seguent;
-
-
     return elementoAEliminar;
-
-
-
 }
 
 Element* Contenidor::EliminaComodi() {
@@ -150,9 +126,7 @@ Element* Contenidor::EliminaComodi() {
             actual = actual->seguent;
         }
     }
-
     // Si llegamos aquí, significa que no se encontró ningún comodín
-
     throw std::invalid_argument("No se ha encontrado ningún comodín en la taula.");
 }
 
@@ -168,16 +142,11 @@ int Contenidor::getQuants() {
     return count;
 }
 
-
-
-
 void Contenidor::mostrar() {
     std::string** taulaMostrar = new std::string*[nRow];  // Declara un arreglo de punteros a filas
-
     for (int i = 0; i < nRow; i++) {
         taulaMostrar[i] = new std::string[nCol];  // Crea cada fila con un arreglo de columnas
     }
-
     for (int i = 0; i < nCol; i++) {
         node* actual = taula[i];  // Inicio de la fila
         int cont=0;
@@ -191,9 +160,7 @@ void Contenidor::mostrar() {
             cont++;
         }
     }
-
     imprimirMatriu(taulaMostrar);
-
     for (int i = 0; i < nRow; i++) {
         delete[] taulaMostrar[i];
     }
@@ -203,10 +170,10 @@ void Contenidor::mostrar() {
 void Contenidor::imprimirMatriu(std::string** matriu){
     for (int i = 0; i < nRow; i++) {
         if(i==0){
-        for (int j = 1; j < nCol+1; j++) {
-            std::cout << j;
-            std::cout <<" ";
-        }
+            for (int j = 1; j < nCol+1; j++) {
+                std::cout << j;
+                std::cout <<" ";
+            }
             std::cout << std::endl;
         }
         for (int j = 0; j < nCol; j++) {
@@ -214,7 +181,6 @@ void Contenidor::imprimirMatriu(std::string** matriu){
         }
         std::cout << std::endl;
     }
-
 }
 
 
