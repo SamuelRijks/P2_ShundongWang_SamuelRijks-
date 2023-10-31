@@ -20,76 +20,52 @@ Contenidor::Contenidor(int nRow, int nCol) {
     for (int i = 0; i < nCol; ++i) {
         taula[i] = nullptr;
     }
-    int getArrayLength = nCol; // Obtener el número de columnas
-    std::cout << getArrayLength;
-    char availableChars[] = { 'A','A', 'B', 'C', 'D', '*', '*'};
+
+    std::vector<int> numbers = {1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 1, 1, 1, 2, 5, 6, 3, 3, 3, 1, 1, 1};
+    char availableChars[] = {'A', 'A', 'B', 'C', 'D', '*', '*'};
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dist(1, 6);
 
     int contComodins = 0;
     for (int i = 0; i < nCol; ++i) {
         node *anterior = nullptr; //secuencia enlazada de cada fila
         for (int j = 0; j < nRow; ++j) {
-            int randomIndex = dist(gen);
-            char character = availableChars[randomIndex];
-            int premiValue = randomIndex;
+            if (numbers.empty()) {
+                // 检查numbers数组是否为空
+                // 如果为空，你可以选择一个默认字符或采取其他操作
+                break;
+            }
 
-            if(randomIndex <5 &&randomIndex >= 0){
-                Element* element = new Lletra(premiValue, character);
+            // 随机生成一个索引，这个索引将用于从numbers数组中获取数字
+            std::uniform_int_distribution<> distIndex(0, numbers.size() - 1);
+            int index = distIndex(gen);
+
+            // 从numbers数组中获取一个数字并从数组中删除
+            int randomIndex = numbers[index];
+            numbers.erase(numbers.begin() + index);
+
+            if (randomIndex >= 0 && randomIndex < 7) {
+                char character = availableChars[randomIndex];
+                Element* element = new Lletra(randomIndex, character);
                 node* nuevoNodo = new node;
                 nuevoNodo->contigut = element;
                 nuevoNodo->seguent = nullptr;
 
                 if (anterior != nullptr) {
-                    anterior->seguent = nuevoNodo;  // Enlaza el nuevo nodo con el anterior
+                    anterior->seguent = nuevoNodo;
                 } else {
-                    taula[i] = nuevoNodo;  // Si es el primer nodo de la fila, establece taula[i]
+                    taula[i] = nuevoNodo;
                 }
                 anterior = nuevoNodo;
+            } else {
+                // 处理 randomIndex 超出范围的情况
+                // 可以选择默认字符或其他操作
             }
-            else {
-                if(contComodins < 2){
-                    Element* element = new Comodi(6, character);
-
-                    node* nuevoNodo = new node;
-                    nuevoNodo->contigut = element;
-                    nuevoNodo->seguent = nullptr;
-                    if (anterior != nullptr) {
-                        anterior->seguent = nuevoNodo;  // Enlaza el nuevo nodo con el anterior
-                    } else {
-                        taula[i] = nuevoNodo;  // Si es el primer nodo de la fila, establece taula[i]
-                    }
-                    anterior = nuevoNodo;
-                    contComodins++;
-                }
-                else{
-                    randomIndex = dist(gen);
-                    while (availableChars[randomIndex] == '*') {
-                        randomIndex = dist(gen);
-                    }
-                    Element* element = new Lletra(randomIndex, availableChars[randomIndex]);
-                    node* nuevoNodo = new node;
-                    nuevoNodo->contigut = element;
-                    nuevoNodo->seguent = nullptr;
-
-                    if (anterior != nullptr) {
-                        anterior->seguent = nuevoNodo;  // Enlaza el nuevo nodo con el anterior
-                    } else {
-                        taula[i] = nuevoNodo;  // Si es el primer nodo de la fila, establece taula[i]
-                    }
-                    anterior = nuevoNodo;
-                }
-
-
-            }
-
-
         }
-
     }
 }
+
 void Contenidor::afegirElement(Element* element) {
     // 遍历 taula，找到第一个为空的元素位置，并添加 element
     for (int i = 0; i < nRow; ++i) {
