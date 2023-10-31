@@ -1,7 +1,7 @@
 
 #include "../../Headers/include/Comodi.h"
 
-Comodi::Comodi() : Element('*'){
+Comodi::Comodi() {
     this->premi = 0;
 }
 
@@ -18,15 +18,11 @@ char Comodi::getSimbol() {
 }
 
 bool Comodi::operator==(Element *other) {
-    // Verifica si 'other' es de tipo Comodi
-    Comodi* otherComodi = dynamic_cast<Comodi*>(other);
-    return (otherComodi != nullptr);
+    return true;
 }
 
 bool Comodi::operator!=(Element *other) {
-    // Verifica si 'other' no es de tipo Comodi
-    Comodi* otherComodi = dynamic_cast<Comodi*>(other);
-    return (otherComodi == nullptr);
+    return false;
 }
 
 void Comodi::mostrar() {

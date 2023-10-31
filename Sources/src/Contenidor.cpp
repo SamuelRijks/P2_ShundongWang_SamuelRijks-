@@ -45,7 +45,7 @@ Contenidor::Contenidor(int nRow, int nCol) {
             int randomIndex = numbers[index];
             numbers.erase(numbers.begin() + index);
 
-            if (randomIndex >= 0 && randomIndex < 7) {
+            if (randomIndex >= 0 && randomIndex < 5) {
                 char character = availableChars[randomIndex];
                 Element* element = new Lletra(randomIndex, character);
                 node* nuevoNodo = new node;
@@ -58,7 +58,21 @@ Contenidor::Contenidor(int nRow, int nCol) {
                     taula[i] = nuevoNodo;
                 }
                 anterior = nuevoNodo;
-            } else {
+            }
+            else if( randomIndex >=5){
+                char character = availableChars[randomIndex];
+                Element* element = new Comodi(randomIndex, character);
+                node* nuevoNodo = new node;
+                nuevoNodo->contigut = element;
+                nuevoNodo->seguent = nullptr;
+
+                if (anterior != nullptr) {
+                    anterior->seguent = nuevoNodo;
+                } else {
+                    taula[i] = nuevoNodo;
+                }
+                anterior = nuevoNodo;
+            }else {
                 // 处理 randomIndex 超出范围的情况
                 // 可以选择默认字符或其他操作
             }
@@ -131,8 +145,6 @@ Element* Contenidor::EliminaComodi() {
                 }
                 delete actual;
                 return contenido;
-
-
             }
             anterior = actual;
             actual = actual->seguent;

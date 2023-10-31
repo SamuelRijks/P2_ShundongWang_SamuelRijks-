@@ -12,16 +12,16 @@ int Element::getPremi() {
 }
 
 bool Element::operator==(Element *other) {
-    return false;
+    return this->getPremi()==other->getPremi();
 }
 
 bool Element::operator!=(Element *other){
-    return true;
+    return this->getPremi()==other->getPremi();
 }
-/*void Element::mostrar() {
+void Element::mostrar() {
     // 在这里实现 Element 类的显示逻辑
     std::cout << "Simbol: " << simbol << " Premi: " << getPremi() << std::endl;
-}*/
+}
 
 
 Element::Element() : simbol('_') {

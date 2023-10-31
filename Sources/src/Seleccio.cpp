@@ -24,13 +24,16 @@ bool Seleccio::afegir(Element* element) {
 bool Seleccio::eliminar3iguals() {
     int numEliminados = 0;  // 记录已经删除的元素个数
     Element* a = new Lletra();
+    Element* b = new Comodi();
+
 
     for (int i = 0; i < mida - 2; ++i) {
         for (int j = i + 1; j < mida - 1; ++j) {
             for (int k = j + 1; k < mida; ++k) {
-                /*if (reinterpret_cast<const char *>(array[i]->getSimbol()) != "_" && reinterpret_cast<const char *>(array[j]->getSimbol()) != "_"&& reinterpret_cast<const char *>(array[k]->getSimbol()) != "_") {*/
-                if (array[i]->operator!=(a) && array[j]->operator!=(a) && array[k]->operator!=(a)) {
 
+                /*if (reinterpret_cast<const char *>(array[i]->getSimbol()) != "_" && reinterpret_cast<const char *>(array[j]->getSimbol()) != "_"&& reinterpret_cast<const char *>(array[k]->getSimbol()) != "_") {*/
+                /*if (array[i]->operator!=(a) && array[j]->operator!=(a) && array[k]->operator!=(a)) {*/
+                    if (array[i]->getPremi()!=0 && array[j]->getPremi()!=0 && array[k]->getPremi()!=0) {
                     /* if (array[i]->getPremi() == array[j]->getPremi() &&
                          array[i]->getPremi() == array[k]->getPremi()){/*
                      /*if (array[i]->operator==(array[j]) &&
@@ -45,9 +48,10 @@ bool Seleccio::eliminar3iguals() {
                     premiFinal += 150;
                     numEliminados += 3;
                     }
-                    else if ((array[i]->getPremi() == array[j]->getPremi() && array[k]->getPremi() >= 5) ||
-                             (array[i]->getPremi() == array[k]->getPremi() && array[j]->getPremi() >= 5) ||
-                             (array[j]->getPremi() == array[k]->getPremi() && array[i]->getPremi() >= 5)) {
+
+                    else if ((array[i]->getPremi() == array[j]->getPremi() && array[k]->getPremi() > 4) ||
+                             (array[i]->getPremi() == array[k]->getPremi() && array[j]->getPremi() > 4) ||
+                             (array[j]->getPremi() == array[k]->getPremi() && array[i]->getPremi() > 4)) {
                         // 找到两个字符奖金值大于5且相同的情况
                         array[i] = new Lletra();
                         array[j] = new Lletra();
