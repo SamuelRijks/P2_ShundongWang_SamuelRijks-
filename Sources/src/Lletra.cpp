@@ -21,11 +21,11 @@ char Lletra::getSimbol() {
 }
 
 bool Lletra::operator==(Element *other) {
-    return false;
+    return this->getPremi()==other->getPremi();
 }
 
 bool Lletra::operator!=(Element *other) {
-    return true;
+    return this->getPremi()!=other->getPremi();
 }
 
 void Lletra::mostrar() {

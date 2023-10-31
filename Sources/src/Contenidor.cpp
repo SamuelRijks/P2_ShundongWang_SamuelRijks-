@@ -22,12 +22,11 @@ Contenidor::Contenidor(int nRow, int nCol) {
     }
     int getArrayLength = nCol; // Obtener el número de columnas
     std::cout << getArrayLength;
-
-    char availableChars[] = {'A', 'B', 'C', 'D', '*', '*'};
+    char availableChars[] = { 'A','A', 'B', 'C', 'D', '*', '*'};
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dist(0, 5);
+    std::uniform_int_distribution<> dist(1, 6);
 
     int contComodins = 0;
     for (int i = 0; i < nCol; ++i) {
@@ -37,7 +36,7 @@ Contenidor::Contenidor(int nRow, int nCol) {
             char character = availableChars[randomIndex];
             int premiValue = randomIndex;
 
-            if(randomIndex <4 &&randomIndex >= 0){
+            if(randomIndex <5 &&randomIndex >= 0){
                 Element* element = new Lletra(premiValue, character);
                 node* nuevoNodo = new node;
                 nuevoNodo->contigut = element;
@@ -50,9 +49,9 @@ Contenidor::Contenidor(int nRow, int nCol) {
                 }
                 anterior = nuevoNodo;
             }
-             else {
+            else {
                 if(contComodins < 2){
-                    Element* element = new Comodi(premiValue, character);
+                    Element* element = new Comodi(6, character);
 
                     node* nuevoNodo = new node;
                     nuevoNodo->contigut = element;
@@ -91,7 +90,6 @@ Contenidor::Contenidor(int nRow, int nCol) {
 
     }
 }
-
 void Contenidor::afegirElement(Element* element) {
     // 遍历 taula，找到第一个为空的元素位置，并添加 element
     for (int i = 0; i < nRow; ++i) {
@@ -123,7 +121,8 @@ Element* Contenidor::EliminaPerColumna(int col) {
     // Verificar si la columna está vacía
     if (taula[col] == nullptr) {
         // Lanzar una excepción personalizada si la columna está vacía
-        throw std::runtime_error("La columna está vacía");
+        std::cout<<"La columna está vacía"<<std::endl;
+        return nullptr;
     }
     // Obtener el primer elemento de la columna
 
@@ -171,15 +170,16 @@ Element* Contenidor::EliminaComodi() {
 
 int Contenidor::getQuants() {
     int count = 0;
-    for (int i = 0; i < nRow; ++i) {
-        for (int j = 0; j < nCol; ++j) {
-            if (taula[i][j].contigut != nullptr) {
-                count++;
-            }
+    for (int i = 0; i < nCol; ++i) {
+        node* currentNode = taula[i];
+        while (currentNode != nullptr) {
+            count++;
+            currentNode = currentNode->seguent;
         }
     }
     return count;
 }
+
 
 
 
@@ -214,6 +214,13 @@ void Contenidor::mostrar() {
 
 void Contenidor::imprimirMatriu(std::string** matriu){
     for (int i = 0; i < nRow; i++) {
+        if(i==0){
+        for (int j = 1; j < nCol+1; j++) {
+            std::cout << j;
+            std::cout <<" ";
+        }
+            std::cout << std::endl;
+        }
         for (int j = 0; j < nCol; j++) {
             std::cout << matriu[i][j] << " ";
         }

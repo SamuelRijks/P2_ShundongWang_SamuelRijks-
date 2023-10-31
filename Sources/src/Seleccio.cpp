@@ -23,19 +23,32 @@ bool Seleccio::afegir(Element* element) {
 
 bool Seleccio::eliminar3iguals() {
     int numEliminados = 0;  // 记录已经删除的元素个数
+    Element* a = new Lletra();
 
     for (int i = 0; i < mida - 2; ++i) {
         for (int j = i + 1; j < mida - 1; ++j) {
             for (int k = j + 1; k < mida; ++k) {
+                /*if (reinterpret_cast<const char *>(array[i]->getSimbol()) != "_" && reinterpret_cast<const char *>(array[j]->getSimbol()) != "_"&& reinterpret_cast<const char *>(array[k]->getSimbol()) != "_") {*/
+                if (array[i]->operator!=(a) && array[j]->operator!=(a) && array[k]->operator!=(a)) {
 
-                    if (array[i]->getPremi()!=0 && array[j]->getPremi()!=0 && array[k]->getPremi()!=0) {
-                        if (array[i]->getSimbol() == array[j]->getSimbol() &&
-                            array[i]->getSimbol() == array[k]->getSimbol())
-                        // 找到三个相同或两个相同一个为 "*" 的情况
-                        std::cout << "numero123 " <<  std::endl;
-                        /*delete array[i];
-                        delete array[j];
-                        delete array[k];*/
+                    /* if (array[i]->getPremi() == array[j]->getPremi() &&
+                         array[i]->getPremi() == array[k]->getPremi()){/*
+                     /*if (array[i]->operator==(array[j]) &&
+                             (array[i]->operator==(array[k])){*/
+                    if (array[i]->operator==(array[j]) &&(array[i]->operator==(array[k]))){
+                    /*delete array[i];
+                    delete array[j];
+                    delete array[k];*/
+                    array[i] = new Lletra();
+                    array[j] = new Lletra();
+                    array[k] = new Lletra();
+                    premiFinal += 150;
+                    numEliminados += 3;
+                    }
+                    else if ((array[i]->getPremi() == array[j]->getPremi() && array[k]->getPremi() >= 5) ||
+                             (array[i]->getPremi() == array[k]->getPremi() && array[j]->getPremi() >= 5) ||
+                             (array[j]->getPremi() == array[k]->getPremi() && array[i]->getPremi() >= 5)) {
+                        // 找到两个字符奖金值大于5且相同的情况
                         array[i] = new Lletra();
                         array[j] = new Lletra();
                         array[k] = new Lletra();
@@ -45,15 +58,10 @@ bool Seleccio::eliminar3iguals() {
                 }
             }
         }
+    }
 
     return numEliminados > 0;
 }
-
-/*||
-                            (array[i]->operator==(array[j]) && array[k]->getSimbol() == '*') ||
-                            (array[i]->operator==(array[k])) && array[j]->getSimbol() == '*') ||
-                            (array[j]->operator==(array[k])&& array[i]->getSimbol() == '*')) */
-
 
 int Seleccio::getPremiFinal() {
     return premiFinal;
