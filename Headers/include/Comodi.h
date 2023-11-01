@@ -14,6 +14,7 @@ private:
 public:
     Comodi();
     Comodi(int premi, char simbol);
+    ~Comodi();
 
     int getPremi() override;
     char getSimbol() override;

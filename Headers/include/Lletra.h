@@ -16,6 +16,7 @@ private:
 public:
     Lletra();
     Lletra(int premi, char simbol);
+    ~Lletra();
 
     int getPremi() override;
     char getSimbol() override;

@@ -25,12 +25,10 @@ Contenidor::Contenidor(int nRow, int nCol) {
     std::random_device rd;
     std::mt19937 gen(rd());
     for (int i = 0; i < nCol; ++i) {
-        node *anterior = nullptr; //secuencia enlazada de cada fila
+        node *anterior = nullptr;
         for (int j = 0; j < nRow; ++j) {
-            // 随机生成一个索引，这个索引将用于从numbers数组中获取数字
             std::uniform_int_distribution<> distIndex(0, numbers.size() - 1);
             int index = distIndex(gen);
-            // 从numbers数组中获取一个数字并从数组中删除
             int randomIndex = numbers[index];
             numbers.erase(numbers.begin() + index);
             if (randomIndex >= 0 && randomIndex < 5) {
@@ -65,7 +63,6 @@ Contenidor::Contenidor(int nRow, int nCol) {
 }
 
 void Contenidor::afegirElement(Element* element) {
-    // 遍历 taula，找到第一个为空的元素位置，并添加 element
     for (int i = 0; i < nRow; ++i) {
         for (int j = 0; j < nCol; ++j) {
             node* current = taula[i][j].seguent;
@@ -89,15 +86,11 @@ void Contenidor::afegirElement(Element* element) {
 }
 
 Element* Contenidor::EliminaPerColumna(int col) {
-    // Verificar si la columna está dentro de los límites
     col -= 1;
-    // Verificar si la columna está vacía
     if (taula[col] == nullptr) {
-        // Lanzar una excepción personalizada si la columna está vacía
-        std::cout<<"La columna está vacía"<<std::endl;
-        return nullptr;
+        throw std::invalid_argument("La columna está vacía");
     }
-    // Obtener el primer elemento de la columna
+
     node* firstNode = taula[col];
     Element *elementoAEliminar = firstNode->contigut;
     taula[col] = taula[col]->seguent;
@@ -113,7 +106,6 @@ Element* Contenidor::EliminaComodi() {
             Element* contenido = actual->contigut;
             if (contenido->operator==(comodi)) {
                 if(anterior == nullptr){
-                    // Suponiendo que esComodi() verifica si es un comodín
                     taula[i] = taula[i]->seguent;
                 }
                 else{
@@ -126,7 +118,7 @@ Element* Contenidor::EliminaComodi() {
             actual = actual->seguent;
         }
     }
-    // Si llegamos aquí, significa que no se encontró ningún comodín
+
     throw std::invalid_argument("No se ha encontrado ningún comodín en la taula.");
 }
 
@@ -143,20 +135,20 @@ int Contenidor::getQuants() {
 }
 
 void Contenidor::mostrar() {
-    std::string** taulaMostrar = new std::string*[nRow];  // Declara un arreglo de punteros a filas
+    std::string** taulaMostrar = new std::string*[nRow];
     for (int i = 0; i < nRow; i++) {
-        taulaMostrar[i] = new std::string[nCol];  // Crea cada fila con un arreglo de columnas
+        taulaMostrar[i] = new std::string[nCol];
     }
     for (int i = 0; i < nCol; i++) {
-        node* actual = taula[i];  // Inicio de la fila
+        node* actual = taula[i];
         int cont=0;
         while (actual != nullptr) {
-            // Accede al contenido del nodo actual
+
             Element* contenido = actual->contigut;
-            // Realiza operaciones con el contenido si es necesario
+
             taulaMostrar[cont][i] = contenido->getSimbol();
 
-            actual = actual->seguent;  // Avanza al siguiente nodo en la fila
+            actual = actual->seguent;
             cont++;
         }
     }
@@ -181,6 +173,10 @@ void Contenidor::imprimirMatriu(std::string** matriu){
         }
         std::cout << std::endl;
     }
+}
+
+Contenidor::~Contenidor() {
+    delete taula;
 }
 
 

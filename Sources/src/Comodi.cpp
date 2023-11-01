@@ -28,3 +28,5 @@ bool Comodi::operator!=(Element *other) {
 void Comodi::mostrar() {
     std::cout << getSimbol();
 }
+
+Comodi::~Comodi() noexcept {}

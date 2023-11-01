@@ -31,3 +31,7 @@ bool Lletra::operator!=(Element *other) {
 void Lletra::mostrar() {
     std::cout << getSimbol() << " ";
 }
+
+Lletra::~Lletra() noexcept {
+
+}

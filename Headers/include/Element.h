@@ -13,10 +13,11 @@ private:
 public:
     Element() ;
     Element(char simbol);
+    virtual ~Element();
     virtual char getSimbol() =0;
     virtual int getPremi() =0;
     virtual bool operator==(Element *other) =0;
-    virtual bool operator!=(Element *other)=0;
+    virtual bool operator!=(Element *other) =0;
     virtual void mostrar() = 0;
 
 

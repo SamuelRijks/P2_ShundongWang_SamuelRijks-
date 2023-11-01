@@ -16,10 +16,12 @@ private:
 
 public:
     Seleccio();
+    ~Seleccio();
     bool afegir(Element*);
     bool eliminar3iguals();
     int getPremiFinal();
     void mostrar();
+    bool getLength();
 
 };
 
